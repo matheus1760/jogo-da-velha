@@ -1,0 +1,122 @@
+https://git-scm.com/docs
+
+Deve existir o branch Main (apenas código estável, toda vez que surgir uma nova alteração no main, criar um versionamento com um branch release a partir do branch dev. Bugs podem ser corrigidos na branch release sem uma hotfix), dev ou developer (depois de um merge fazer um versionamento), feauture (deve ser deletado após um merge. Apenas para features) e a hot fix, que é um branch criado para corrigir bugs (deve ser deletado após os merges com o main e o dev).
+
+https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow
+
+git init [-b (nome do branch inicial)] 
+
+git clone (url ou ssh) [--quiet/-q] [--verbose/-q] [--origin/-o (nome para substituir o nome original do repo)]
+
+git add (arquivos para adicionar) [-v] 
+
+git status [--branch] [-v]
+
+git diff [--cached (com esta opção, será realizada uma comparação entre o commit e o próximo commit em ordem. Se não for especificado o commit, será comparado o head com o próximo do head)] [--stat] [commit] [--name-only] [--no-index] [--] [arquivos]
+
+git commit [-all/-a (automaticamente stage files)] [--branch] [--file/-F (arquivo de texto para servir como commit) ou (-, stdin)] [-t/--template (arquivo, é igual ao --file, mas aciona o editor com o conteúdo inicial)] [-m (mensagem do commit)] [-v] [--quiet] [--ammend (quando arquivos no index, adiciona eles ao último commit commitado, e se não quiser editar o nome, use --no-edit)] [--author (nome do autor)] [--date (data do commit)] [--signoff (assinatura)] [--allow-empty] [--allow-empty-message] [--no-verify] [--no-edit] [--reset-author] [--reset-author-date] [--reset-author-message] [--reset-author-signature] [--no-post-rewrite] [--reuse-message=<commit>] [--reedit-message=<commit>] [--fixup=<commit>] [--squash=<commit>] [--] [arquivos]
+
+git rm (remove arquivos)
+
+git mv (renomeia ou move arquivos)
+
+git branch (lista, cria ou deleta branches) [--delete] [--list (lista os branches) [--show-current (mostra o branch atual)] [-v] [--quiet] 
+
+git checkout <branch> (troca de branch) ou <commit> (volta no tempo, para o commit especificado), mas o head é detached. Para isso não acontecer, criar um branch antes) ou <arquivo> (retira o arquivo untracked)
+
+git switch [branch] (troca branches) -c [branch (cria e troca para o branch)] [--detach ??] [--quiet]
+
+git merge [-m (messagem do merge commit)] [-F/--file]
+
+git mergetool [tool] (resolve conflitos de merges)
+
+git log (mostra o log dos commits) [--oneline] [--graph] [--decorate] (fica mais bonito) [-p (mostra diferenças entre todos os commits)]
+
+git stash apply <stash_hash> (aplica o stash)
+git stash drop (remove o stash)
+git stash pop = apply + drop
+
+git worktree??
+
+git fetch (fetch de repositorios remotos. é o mesmo que git pull, só que não faz o merge automaticamente)) 
+
+git pull [origin] [-q] [-v]atualiza os dados do repo e faz merge
+
+git push [repositório] [-q] [-v] (coloca o código local no repositório na nuvem) [--force (força o git a reescrever a história e substituir o repositório remoto pelo seu código local. Cuidado, se existir alguma coisa no repositório que você não tem localmente, vai perder isso.)] [--all] [--tags] [--set-upstream] [--mirror] [--rebase] [--no-verify] [--porcelain] [--prune] [--verbose] [--dry-run] [--] [arquivos]
+
+git remote??
+
+git submodules??
+
+git show??
+
+git difftool?
+
+git range-diff??
+
+git shortlog (mesma coisa que log, só que um resumo)
+
+git describe??
+
+git apply?
+
+git cherry-pick??
+
+git rebase <branch> [--interactive/-i] (coloque "squash" em vez de "pick" para juntar os arquivos dos commits quando usados em modo interativo. o primeiro arquivo de cima para baixo com pick será o título do commit) 
+
+git revert [commit] [--edit (com esta opção, vai dar pra editar o commit antes de de fazer o revert)] (reverte o commit)
+---------------------------------------------------------------------------------
+O git bisect start vai navegando pelos commits e você vai dizendo se está bom ou não
+
+depois de git bisect start:
+
+git bisect bad <commit ou head^x> (a partir onde vai começar a procurar)
+git bisect good <commit> (até onde vai a busca)
+
+aí vai passando. a cada commit, pode parar digitando git bisect good ou digitar git bisect bad para continuar a busca
+
+depois git bisect reset
+----------------------------
+
+O git blame <arquivo> mostra o responsável por cada linha
+
+é possível colocar um commit de uma branch difetente com o comando git cherry-pick <commit>
+
+git clean (remove untracked files)
+
+git fsck (verifica se existem objetos corruptos no repositório)
+
+git reset <--hard (muda para onde o HEAD aponta, reseta o index, e retira todos os unstaged|--soft (o Head vai apontar para outro commit, mas os arquivos do index continuarão os mesmos, ou seja, se commitar eles, tudo será como antes do reset|--mixed (opção default, agora o index será de acordo com o HEAD, ou seja, a index será resetada. Mas as mudanças unstaged continuarão as mesmas|--merge> HEAD~n (resetar o HEAD para x commits anteriores)
+
+PARA reverter o reset: git reset <--hard/mixed/soft HEAD@{x}
+
+História----------------------------------------------------------
+                    ^  3  4  5  6
+                    2  v  v  v  v
+stage/index-------------------------------------------------------
+                  ^    v  v  v
+                  1    v  v  v
+working directory-------------------------------------------------
+                          v
+git add(1)               (lixo)
+git commit(2)
+git checkout(3)
+git reset --hard(4)
+git reset (mixed)(5)
+git reset --soft(6)
+
+
+
+git reflog (aparecem os commits de acordo com a posição após o HEAD)
+
+index = staged changes
+
+
+If a commit has been made somewhere in the project's history, and you later decide that the commit is wrong and should not have been done, then git revert is the tool for the job. It will undo the changes introduced by the bad commit, recording the "undo" in the history. (coloca na história)
+
+If you have modified a file in your working tree, but haven't committed the change, then you can use git checkout to checkout a fresh-from-repository copy of the file.
+
+If you have made a commit, but haven't shared it with anyone else and you decide you don't want it, then you can use git reset to rewrite the history so that it looks as though you never made that commit. (tira da história)
+
+-------------------------------------------------------------
+git commit --amend (adiciona mudanças atuais ao commit anterior)
