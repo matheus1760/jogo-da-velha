@@ -1,18 +1,13 @@
 # Biblioteca necessária para uso da função sleep()
 import time
 
-# Importação da classe "Jogador"
-from jogador import Jogador
-
 
 # Método com um array como argumento para mostrar o tabuleiro
-# Note o uso da type hint, que é uma "dica" para outros programadores
 def tabuleiro(elemento: list) -> None:
     print()
-    # Este estilo de formatação é mais compacto que o usual
-    print(f"{elemento[0]} | {elemento[1]} | {elemento[2]}")
-    print(f"{elemento[3]} | {elemento[4]} | {elemento[5]}")
-    print(f"{elemento[6]} | {elemento[7]} | {elemento[8]}")
+    print(" {} | {} | {} ".format(elemento[0], elemento[1], elemento[2]))
+    print(" {} | {} | {} ".format(elemento[3], elemento[4], elemento[5]))
+    print(" {} | {} | {} ".format(elemento[6], elemento[7], elemento[8]))
 
 
 print("Bem vindo à Jogo da Velha! pressione ENTER para começar:")
@@ -22,33 +17,31 @@ input()
 print("Carregando...")
 # O sistema fica ocioso por 3 segundos
 time.sleep(3)
+# O print() por si apenas imprime uma nova linha
+print()
 
-# Criação dos dos objetos sem nome, para depois nomeá-los com consdições
-jogador1 = Jogador("", 1, "0")
-jogador1.nomear_jogador()
-jogador2 = Jogador("", 2, "x")
-jogador2.nomear_jogador()
+print("Jogador 1(bolinha), digite seu nome:\n")
+jogador1 = input().title()
+print()
 
+print("Jogador 2(xis), digite seu nome:\n")
+jogador2 = input().title()
+print()
 
-while True:
-    if jogador2.nome == jogador1.nome:
-        print("Jogador 2, seu nome é igual ao jogador 1. Escolha outro nome!")
-        jogador2.nomear_jogador()
-    break
-
-# Também é possível utilizar o "\n" no começo do print para quebrar a linha
-print("\nComo jogar:")
+print("Como jogar:")
 print("Cada casa do jogo da velha tem um número associado.")
 print("Veja a ilustração:")
 
 tabuleiro([1, 2, 3, 4, 5, 6, 7, 8, 9])
 
-print("\nPara ganhar, você precisa conseguir 3 em linha,")
+print()
+
+print("Para ganhar, você precisa conseguir 3 em linha,")
 print("na horizontal, na vertical ou na diagonal.\n")
 
 time.sleep(5)
 
-print(f"{jogador1.nome}(bolinha) vs {jogador2.nome}(x)!")
+print(f"{jogador1}(bolinha) vs {jogador2}(x)!")
 
 
 def checar_vitoria(elemento: list) -> bool:
@@ -73,28 +66,17 @@ def checar_vitoria(elemento: list) -> bool:
     return False
 
 
-def checar_empate(elemento: list) -> bool:
-    for i in range(9):
-
-        if elemento[i] == " ":
-            return False
-
-    return True
-
-
-def rodada(elemento: list, num_rodada) -> None:
-    if num_rodada % 2 == 0:
-        nome_jogador = jogador2.nome
-        símbolo = jogador2.símbolo
+def rodada(elemento: list, num_jogador, num_rodada, jogador: str) -> None:
+    if num_jogador == 1:
+        simbolo = "O"
     else:
-        nome_jogador = jogador1.nome
-        símbolo = jogador1.símbolo
+        simbolo = "X"
 
     # Note que é possível utilizar métodos dentro de métodos
     tabuleiro(elemento)
 
-    print(f"Rodada {num_rodada}!")
-    print(f"{nome_jogador}, digite o número da casa que deseja jogar:")
+    print("Rodada {}!".format(num_rodada))
+    print(f"{jogador}, digite o número da casa que deseja jogar:")
 
     jogada = int(input())
 
@@ -103,41 +85,41 @@ def rodada(elemento: list, num_rodada) -> None:
 
         # O -1 é usado, pois o range começa em 1, e o array começa em 0.
         if elemento[jogada - 1] == " ":
-            elemento[jogada - 1] = símbolo
+            elemento[jogada - 1] = simbolo
         else:
             print("Casa ocupada, escolha outra")
-            rodada(elemento, num_rodada)
+
+            rodada(elemento, num_jogador, num_rodada, jogador)
 
     else:
         print("Jogada inválida, escolha outra")
-        rodada(elemento, num_rodada)
+        rodada(elemento, num_jogador, num_rodada, jogador)
 
 
-# Tabuleiro inicial
 elemento = [" "] * 9
 num_rodada = 1
+# Se o contador for par, é a vez do jogador 1, senão, é a vez do jogador 2
+contador_jogador = 0
 
-# Comportamento geral do jogo
 while True:
+    if contador_jogador % 2 == 0:
+        jogador = jogador1
+        num_jogador = 1
+    else:
+        jogador = jogador2
+        num_jogador = 2
 
-    rodada(elemento, num_rodada)
+    rodada(elemento, num_jogador, num_rodada, jogador)
 
     if checar_vitoria(elemento) is True:
+
         tabuleiro(elemento)
 
-        if num_rodada % 2 != 0:
-            print(f"{jogador1.nome}, jogador ({jogador1.número}) ganhou!")
-        else:
-            print(f"{jogador2.nome}, jogador({jogador2.número}) ganhou!")
-
+        print(f"{jogador} venceu!, Parabéns")
         print(f"Você venceu na {num_rodada}ª rodada!")
         break
 
-    if checar_empate(elemento) is True:
-        tabuleiro(elemento)
-        print("Empate!")
-        break
-
     num_rodada += 1
+    contador_jogador += 1
 
     time.sleep(0.5)
