@@ -11,31 +11,25 @@ def tabuleiro(elemento: list) -> None:
 
 print("Bem vindo à Jogo da Velha! pressione ENTER para começar:")
 # O input() por si espera um uma confirmação de um dispositivo de entrada
-input()
 
-print("Carregando...")
+print("\nCarregando...")
 # O sistema fica ocioso por 3 segundos
 time.sleep(3)
 # O print() por si apenas imprime uma nova linha
-print()
 
-print("Jogador 1(bolinha), digite seu nome:\n")
+print("\nJogador 1(bolinha), digite seu nome:\n")
 jogador1 = input().title()
-print()
 
-print("Jogador 2(xis), digite seu nome:\n")
+print("\nJogador 2(xis), digite seu nome:\n")
 jogador2 = input().title()
-print()
 
-print("Como jogar:")
+print("\nComo jogar:")
 print("Cada casa do jogo da velha tem um número associado.")
 print("Veja a ilustração:")
 
 tabuleiro([1, 2, 3, 4, 5, 6, 7, 8, 9])
 
-print()
-
-print("Para ganhar, você precisa conseguir 3 em linha,")
+print("\nPara ganhar, você precisa conseguir 3 em linha,")
 print("na horizontal, na vertical ou na diagonal.\n")
 
 time.sleep(5)
