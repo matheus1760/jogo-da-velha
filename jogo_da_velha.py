@@ -5,10 +5,9 @@ import time
 # Método com um array como argumento para mostrar o tabuleiro
 def tabuleiro(elemento: list) -> None:
     print()
-    print(" {} | {} | {} ".format(elemento[0], elemento[1], elemento[2]))
-    print(" {} | {} | {} ".format(elemento[3], elemento[4], elemento[5]))
-    print(" {} | {} | {} ".format(elemento[6], elemento[7], elemento[8]))
-
+    print(f"{elemento[0]} | {elemento[1]} | {elemento[2]}")
+    print(f"{elemento[3]} | {elemento[4]} | {elemento[5]}")
+    print(f"{elemento[6]} | {elemento[7]} | {elemento[8]}")
 
 print("Bem vindo à Jogo da Velha! pressione ENTER para começar:")
 # O input() por si espera um uma confirmação de um dispositivo de entrada
