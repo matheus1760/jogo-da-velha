@@ -9,7 +9,6 @@ Este projeto utiliza tudo que o grupo aprendeu sobre python na criação do famo
 - métodos
 - listas
 - formatação
-- Orientação a objetos
 - boas práticas:
     - flake8 (PEP 8)
     - mypy (type hints)
@@ -17,7 +16,5 @@ Este projeto utiliza tudo que o grupo aprendeu sobre python na criação do famo
 ## Funcionalidades:
 
 - inputs de confirmação
-- empates
 - time.sleep() (tempos de ociosidade)
-- nomeação dinâmica dos jogadores
 
