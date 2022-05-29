@@ -31,13 +31,12 @@ while True:
         break
 
 print("\nJogador 2(xis), digite seu nome:\n")
-jogador2 = input().title()
 
 while True:
     if input() == "":
         print("Nome Inválido, digite novamente:")
     else:
-        jogador2 = input()
+        jogador2 = input().title()
         break
 
 print("\nComo jogar:")
@@ -93,8 +92,10 @@ def rodada(elemento: list[str], num_jogador, num_rodada, jogador: str) -> None:
     implementa as outras funções"""
     if num_jogador == 1:
         simbolo = "O"
-    else:
+    elif num_jogador == 2:
         simbolo = "X"
+    else:
+        raise ValueError("Número de jogador inválido")
 
     # Note que é possível utilizar métodos dentro de métodos
     tabuleiro(elemento)
