@@ -46,8 +46,7 @@ print("Veja a ilustração:")
 # Usa-se a função tabuleiro() para mostrar o tabuleiro de exemplo
 tabuleiro([1, 2, 3, 4, 5, 6, 7, 8, 9])
 
-print("\nPara ganhar, você precisa conseguir 3 em linha,")
-print("na horizontal, na vertical ou na diagonal.\n")
+print("\nPara ganhar, é preciso 3 símbolos consecutivos.\n")
 
 time.sleep(5)
 
