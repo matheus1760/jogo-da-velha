@@ -23,13 +23,13 @@ time.sleep(3)
 
 print("\nJogador 1(bolinha), digite seu nome:\n")
 
+# Enquanto o nome do jogador não for válido, o programa pede novamente
 while True:
     jogador1 = input().title()
     if jogador1 == "":
         print("Nome Inválido, digite novamente:")
 
     break
-
 
 print("\nJogador 2(xis), digite seu nome:\n")
 
