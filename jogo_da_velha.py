@@ -22,10 +22,23 @@ time.sleep(3)
 # O print() por si apenas imprime uma nova linha
 
 print("\nJogador 1(bolinha), digite seu nome:\n")
-jogador1 = input().title()
+
+while True:
+    if input() == "":
+        print("Nome Inválido, digite novamente:")
+    else:
+        jogador1 = input()
+        break
 
 print("\nJogador 2(xis), digite seu nome:\n")
 jogador2 = input().title()
+
+while True:
+    if input() == "":
+        print("Nome Inválido, digite novamente:")
+    else:
+        jogador2 = input()
+        break
 
 print("\nComo jogar:")
 print("Cada casa do jogo da velha tem um número associado.")
