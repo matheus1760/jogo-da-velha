@@ -27,7 +27,7 @@ while True:
     if input() == "":
         print("Nome Inválido, digite novamente:")
     else:
-        jogador1 = input()
+        jogador1 = input().title()
         break
 
 print("\nJogador 2(xis), digite seu nome:\n")
