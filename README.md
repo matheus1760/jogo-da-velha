@@ -8,11 +8,7 @@ Este projeto utiliza tudo que o grupo aprendeu sobre python na criação do famo
 
 - métodos
 - listas
-- formatação
-- boas práticas:
-    - flake8 (PEP 8)
-    - mypy (type hints)
-    - pylint (linter)
+- formatação de texto
  
 ## Funcionalidades:
 
