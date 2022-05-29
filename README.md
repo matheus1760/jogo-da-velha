@@ -14,4 +14,4 @@ Este projeto utiliza tudo que o grupo aprendeu sobre python na criação do famo
 
 - inputs de confirmação
 - time.sleep() (tempos de ociosidade)
-
+- nomeação dinâmica dos jogadores
