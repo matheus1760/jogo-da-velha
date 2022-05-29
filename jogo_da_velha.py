@@ -2,7 +2,7 @@
 import time
 
 
-def tabuleiro(elemento: list[str]) -> None:
+def tabuleiro(elemento: list) -> None:
     """Método com uma lista de strings como argumento
     para mostrar o tabuleiro"""
     print()
@@ -24,20 +24,21 @@ time.sleep(3)
 print("\nJogador 1(bolinha), digite seu nome:\n")
 
 while True:
-    if input() == "":
+    jogador1 = input().title()
+    if jogador1 == "":
         print("Nome Inválido, digite novamente:")
-    else:
-        jogador1 = input().title()
-        break
+
+    break
+
 
 print("\nJogador 2(xis), digite seu nome:\n")
 
 while True:
-    if input() == "":
+    jogador2 = input().title()
+    if jogador2 == "":
         print("Nome Inválido, digite novamente:")
-    else:
-        jogador2 = input().title()
-        break
+
+    break
 
 print("\nComo jogar:")
 print("Cada casa do jogo da velha tem um número associado.")
@@ -54,7 +55,7 @@ time.sleep(5)
 print(f"{jogador1}(bolinha) vs {jogador2}(x)!")
 
 
-def checar_vitoria(elemento: list[str]) -> bool:
+def checar_vitoria(elemento: list) -> bool:
     """Método que checa se há vitoria a partir de uma lista de strings"""
     for i in range(3):
 
@@ -77,7 +78,7 @@ def checar_vitoria(elemento: list[str]) -> bool:
     return False
 
 
-def checar_empate(elemento: list[str]) -> bool:
+def checar_empate(elemento: list) -> bool:
     """Método que checa se há empate a partir de uma lista de strings"""
     for i in range(9):
         if elemento[i] == " ":
@@ -86,15 +87,14 @@ def checar_empate(elemento: list[str]) -> bool:
     return True
 
 
-def rodada(elemento: list[str], num_jogador, num_rodada, jogador: str) -> None:
+def rodada(elemento: list, num_jogador: int, num_rodada,
+           jogador: str) -> None:
     """Método "principal" que recebe inúmeros argumentos e
     implementa as outras funções"""
     if num_jogador == 1:
         simbolo = "O"
-    elif num_jogador == 2:
-        simbolo = "X"
     else:
-        raise ValueError("Número de jogador inválido")
+        simbolo = "X"
 
     # Note que é possível utilizar métodos dentro de métodos
     tabuleiro(elemento)
@@ -122,8 +122,8 @@ def rodada(elemento: list[str], num_jogador, num_rodada, jogador: str) -> None:
 
 elemento_do_jogo = [" "] * 9
 # Se o contador for par, é a vez do jogador 1, senão, é a vez do jogador 2
-
 for num_rodada_atual in range(1, 10):
+    print(num_rodada_atual)
     contador_jogador = num_rodada_atual - 1
 
     # O operador not serve para inverter o valor entre 0 e 1,
