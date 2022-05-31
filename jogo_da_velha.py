@@ -21,22 +21,24 @@ print("Carregando...")
 time.sleep(3)
 # O print() por si apenas imprime uma nova linha
 
-print("\nJogador 1(bolinha), digite seu nome:\n")
-
 # Enquanto o nome do jogador não for válido, o programa pede novamente
 while True:
+    print("\nJogador 1(círculo), digite seu nome:\n")
     jogador1 = input().title()
     if jogador1 == "":
         print("Nome Inválido, digite novamente:")
+        continue
 
     break
 
-print("\nJogador 2(xis), digite seu nome:\n")
 
 while True:
+    print("\nJogador 2(x), digite seu nome:\n")
+
     jogador2 = input().title()
     if jogador2 == "":
         print("Nome Inválido, digite novamente:")
+        continue
 
     break
 
@@ -52,27 +54,29 @@ print("\nPara ganhar, é preciso 3 símbolos consecutivos.\n")
 time.sleep(5)
 
 # Este é um tipo de formatação chamado de f-string
-print(f"{jogador1}(bolinha) vs {jogador2}(x)!")
+print(f"{jogador1}(círculo) vs {jogador2}(x)!")
 
 
 def checar_vitoria(elemento: list) -> bool:
     """Método que checa se há vitoria a partir de uma lista de strings"""
-    for i in range(3):
+    for i in range(6):
 
         # Se a casa 1, 2 e 3 estão com o mesmo símbolo, alguém ganhou
         # Vitória na horizontal
         if elemento[i] == elemento[i + 1] == elemento[i + 2] != " ":
             return True
 
+    for i in range(3):
+
         # Vitória na vertical
         if elemento[i] == elemento[i + 3] == elemento[i + 6] != " ":
             return True
 
-        # Vitórias na diagonal
-        if elemento[0] == elemento[4] == elemento[8] != " ":
-            return True
-        if elemento[2] == elemento[4] == elemento[6] != " ":
-            return True
+    # Vitórias na diagonal
+    if elemento[0] == elemento[4] == elemento[8] != " ":
+        return True
+    if elemento[2] == elemento[4] == elemento[6] != " ":
+        return True
 
     # Se o return False não está identado, não precisa do else
     return False
@@ -123,7 +127,6 @@ def rodada(elemento: list, num_jogador: int, num_rodada,
 elemento_do_jogo = [" "] * 9
 # Se o contador for par, é a vez do jogador 1, senão, é a vez do jogador 2
 for num_rodada_atual in range(1, 10):
-    print(num_rodada_atual)
     contador_jogador = num_rodada_atual - 1
 
     # O operador not serve para inverter o valor entre 0 e 1,
