@@ -59,7 +59,7 @@ print(f"{jogador1}(círculo) vs {jogador2}(x)!")
 
 def checar_vitoria(elemento: list) -> bool:
     """Método que checa se há vitoria a partir de uma lista de strings"""
-    for i in range(6):
+    for i in range(0, 3, 6):
 
         # Se a casa 1, 2 e 3 estão com o mesmo símbolo, alguém ganhou
         # Vitória na horizontal
