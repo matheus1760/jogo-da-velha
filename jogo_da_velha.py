@@ -11,14 +11,38 @@ def tabuleiro(elemento: list) -> None:
     print(f"{elemento[6]} | {elemento[7]} | {elemento[8]}")
 
 
-print("Bem vindo à Jogo da Velha! pressione ENTER para começar:")
+print(r"""
+    _____                                            __                                       __  __                 
+   |     \                                          |  \                                     |  \|  \                
+    \$$$$$  ______    ______    ______          ____| $$  ______         __     __   ______  | $$| $$____    ______  
+      | $$ /      \  /      \  /      \        /      $$ |      \       |  \   /  \ /      \ | $$| $$    \  |      \ 
+ __   | $$|  $$$$$$\|  $$$$$$\|  $$$$$$\      |  $$$$$$$  \$$$$$$\       \$$\ /  $$|  $$$$$$\| $$| $$$$$$$\  \$$$$$$\
+|  \  | $$| $$  | $$| $$  | $$| $$  | $$      | $$  | $$ /      $$        \$$\  $$ | $$    $$| $$| $$  | $$ /      $$
+| $$__| $$| $$__/ $$| $$__| $$| $$__/ $$      | $$__| $$|  $$$$$$$         \$$ $$  | $$$$$$$$| $$| $$  | $$|  $$$$$$$
+ \$$    $$ \$$    $$ \$$    $$ \$$    $$       \$$    $$ \$$    $$          \$$$    \$$     \| $$| $$  | $$ \$$    $$
+  \$$$$$$   \$$$$$$  _\$$$$$$$  \$$$$$$         \$$$$$$$  \$$$$$$$           \$      \$$$$$$$ \$$ \$$   \$$  \$$$$$$$
+                    |  \__| $$                                                                                       
+                     \$$    $$                                                                                       
+                      \$$$$$$                                                                                        
+ _______     __    _______          ______    ______                                                                 
+|       \  _/  \  |       \        /      \  /      \                                                                
+| $$$$$$$\|   $$  | $$$$$$$\      |  $$$$$$\|  $$$$$$\                                                               
+| $$__/ $$ \$$$$  | $$__/ $$      | $$   \$$| $$   \$$                                                               
+| $$    $$  | $$  | $$    $$      | $$      | $$                                                                     
+| $$$$$$$   | $$  | $$$$$$$\      | $$   __ | $$   __                                                                
+| $$       _| $$_ | $$__/ $$      | $$__/  \| $$__/  \                                                               
+| $$      |   $$ \| $$    $$       \$$    $$ \$$    $$                                                               
+ \$$       \$$$$$$ \$$$$$$$         \$$$$$$   \$$$$$$                                                                
+""")
+print("pressione ENTER para começar:")
 
 # a entrada por si espera uma confirmação de um dispositivo de entrada
 input()
 
 print("Carregando...")
-# O sistema fica ocioso por 3 segundos
-time.sleep(3)
+
+# O sistema fica ocioso por 1 segundo
+time.sleep(1)
 
 
 def nomear_jogador(simbolo: str, numero: int) -> str:
@@ -44,7 +68,7 @@ tabuleiro([numbers for numbers in range(1, 10)])
 
 print("\nPara ganhar, é preciso 3 símbolos consecutivos.\n")
 
-time.sleep(5)
+time.sleep(3)
 
 # Esta é uma formatação chamada f-string
 print(f"{jogador1}(círculo) vs {jogador2}(x)!")
@@ -52,16 +76,18 @@ print(f"{jogador1}(círculo) vs {jogador2}(x)!")
 
 def checar_vitoria(elemento: list) -> bool:
     """Método que checa se há vitoria a partir de uma lista de 'strings'"""
-    # 0, 3, 6?
-    for i in range(0, 3, 6):
+    # Até 6 porque existem testes com i + 2
+    for i in range(len(elemento) - 2):
         # Se a casa 1, 2 e 3 estão com o mesmo símbolo, alguém ganhou
         # Vitória na horizontal
-        if elemento[i] == elemento[i + 1] == elemento[i + 2] != " ":
+        if (elemento[i] == elemento[i + 1] == elemento[i + 2] or elemento[i - 1] == elemento[i] == elemento[i + 1] or
+                elemento[i - 2] == elemento[i - 1] == elemento[i]) and elemento[i] != " ":
             return True
 
-    for i in range(3):
+    for i in range(len(elemento) - 6):
         # Vitória na vertical
-        if elemento[i] == elemento[i + 3] == elemento[i + 6] != " ":
+        if (elemento[i] == elemento[i + 3] == elemento[i + 6] or elemento[i - 3] == elemento[i] == elemento[i + 3] or
+                elemento[i - 6] == elemento[i - 3] == elemento[i]) and elemento[i] != " ":
             return True
 
     # Vitórias na diagonal
@@ -140,3 +166,36 @@ for num_rodada_atual in range(1, 10):
     time.sleep(0.5)
 
 # Porque uma lista e não uma 'string'? Lembre-se, Python não é Ruby
+
+print(r"""
+  _____       _                             _                                         
+ |_   _|     | |                           | |          _                             
+   | |  _ __ | |_ ___  __ _ _ __ __ _ _ __ | |_ ___ ___(_)                            
+   | | | '_ \| __/ _ \/ _` | '__/ _` | '_ \| __/ _ / __|                              
+  _| |_| | | | ||  __| (_| | | | (_| | | | | ||  __\__ \_                             
+ |_____|_| |_|\__\___|\__, |_|  \__,_|_| |_|\__\___|___(_)                            
+           _           __/ |      _____                __  _     _                    
+     /\   | |         |___/      |  __ \              /_/ | |   (_)                   
+    /  \  | | ___ ___ ___  __ _  | |  | | __ _ _ __  _   _| |__  _  __ _              
+   / /\ \ | |/ _ / __/ __|/ _` | | |  | |/ _` | '_ \| | | | '_ \| |/ _` |             
+  / ____ \| |  __\__ \__ | (_| | | |__| | (_| | | | | |_| | |_) | | (_| |             
+ /_/__  \_|_|\___|___|___/\__,_| |_____/_\__,_|_| |_|\__,_|_.__/|_|\__,_|             
+ |  _ \           | |      (_)     |  ____|                                           
+ | |_) | ___  __ _| |_ _ __ _ ____ | |__   _ __ ___  _ __ ___   __ _ _ __  _   _  ___ 
+ |  _ < / _ \/ _` | __| '__| |_  / |  __| | '_ ` _ \| '_ ` _ \ / _` | '_ \| | | |/ _ \
+ | |_) |  __| (_| | |_| |  | |/ /  | |____| | | | | | | | | | | (_| | | | | |_| |  __/
+ |____/_\___|\__,_|\__|_|  |_/___| |______|_| |_| |_|_| |_| |_|\__,_|_| |_|\__,_|\___|
+  / ____(_)   | |          (_) |  \/  |                                               
+ | (___  _  __| |_ __   ___ _  | \  / | __ _ _ __ ___ ___  ___                        
+  \___ \| |/ _` | '_ \ / _ | | | |\/| |/ _` | '__/ __/ _ \/ __|                       
+  ____) | | (_| | | | |  __| | | |  | | (_| | | | (_| (_) \__ \                       
+ |_____/|_|\__,_|_| |_|\___|_| |_|  |_|\__,_|_|  \___\___/|___/                       
+  __  __       _   _                      ____  _                                     
+ |  \/  |     | | | |                    |  _ \(_)                                    
+ | \  / | __ _| |_| |__   ___ _   _ ___  | |_) |_  ___  _ __   ___                    
+ | |\/| |/ _` | __| '_ \ / _ | | | / __| |  _ <| |/ _ \| '_ \ / _ \                   
+ | |  | | (_| | |_| | | |  __| |_| \__ \ | |_) | | (_) | | | |  __/                   
+ |_|  |_|\__,_|\__|_| |_|\___|\__,_|___/ |____/|_|\___/|_| |_|\___|                   
+""")
+
+print("Feito com Python 3.10. Obrigado por jogar")
