@@ -46,6 +46,7 @@ time.sleep(1)
 
 
 def nomear_jogador(simbolo: str, numero: int) -> str:
+    """Checa se o nome do jogador é válido"""
     while True:
         print(f"\nJogador {numero}({simbolo}), digite seu nome:")
         nome_jogador = input().title()
