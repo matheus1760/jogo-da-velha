@@ -89,10 +89,7 @@ def checar_empate(elemento: list) -> bool:
 def rodada(elemento: list, num_jogador: int, num_rodada, jogador: str) -> None:
     """Método "principal" que recebe inúmeros argumentos e
     implementa as outras funções"""
-    if num_jogador == 1:
-        simbolo = "O"
-    else:
-        simbolo = "X"
+    simbolo = "O" if num_jogador == 1 else "X"
 
     # É possível utilizar métodos em métodos (tabuleiro() no rodada())
     tabuleiro(elemento)
