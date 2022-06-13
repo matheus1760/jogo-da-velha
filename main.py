@@ -16,12 +16,10 @@ def tabuleiro(elemento: list) -> None:
 print(apresentacao)
 print("pressione ENTER para começar:")
 
-# a entrada por si espera uma confirmação de um dispositivo de entrada
 input()
 
 print("Carregando...")
 
-# O sistema fica ocioso por 1 segundo
 time.sleep(1)
 
 
@@ -36,22 +34,18 @@ def nomear_jogador(simbolo: str, numero: int) -> str:
         print("Nome Inválido, digite novamente:")
 
 
-# Enquanto o nome do jogador não for válido, o programa pede novamente
-# OOP?...
 jogador1 = nomear_jogador("Círculo", 1)
 jogador2 = nomear_jogador("X", 2)
 
 print("\nComo jogar:")
 print("Cada casa do jogo da velha tem um número associado. Veja a ilustração:")
 
-# Usa-se a função tabuleiro() para mostrar o tabuleiro de exemplo
 tabuleiro([numbers for numbers in range(1, 10)])
 
 print("\nPara ganhar, é preciso 3 símbolos consecutivos.\n")
 
 time.sleep(3)
 
-# Esta é uma formatação chamada f-string
 print(f"{jogador1}(círculo) vs {jogador2}(x)!")
 
 
@@ -91,7 +85,6 @@ def rodada(elemento: list, num_jogador: int, num_rodada, jogador: str) -> None:
     implementa as outras funções"""
     simbolo = "O" if num_jogador == 1 else "X"
 
-    # É possível utilizar métodos em métodos (tabuleiro() no rodada())
     tabuleiro(elemento)
 
     print(f"Rodada {num_rodada}! {jogador}, digite o número da casa que deseja jogar:")
@@ -124,8 +117,6 @@ for num_rodada_atual in range(1, 10):
     # ou seja, se o contador for par, o número do jogador é 1, e vice-versa
     num_jogador_atual = not (contador_jogador % 2)
 
-    # Operador ternário do python. Com isso, é possível fazer um if statement
-    # com apenas uma linha, sem repetir o "jogador_atual = "
     jogador_atual = jogador1 if num_jogador_atual == 1 else jogador2
 
     rodada(elemento_do_jogo, num_jogador_atual,
@@ -144,8 +135,6 @@ for num_rodada_atual in range(1, 10):
         break
 
     time.sleep(0.5)
-
-# Porque uma lista e não uma 'string'? Lembre-se, Python não é Ruby
 
 print(finalizacao)
 print("Feito com Python 3.10")
