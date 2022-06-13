@@ -4,6 +4,12 @@
 
 Este projeto utiliza tudo que o grupo aprendeu sobre python na criação do famoso jogo da velha.
 
+<ins>grupo<ins>:
+- Alessa Danúbia
+- Beatriz Emmanuele
+- Sidnei Marcos
+- Matheus Bione
+
 ## Implementações:
 
 - métodos
