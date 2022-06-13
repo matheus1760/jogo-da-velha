@@ -135,6 +135,8 @@ for num_rodada_atual in range(1, 10):
         tabuleiro(elemento_do_jogo)
 
         print(f"{jogador_atual} venceu!, Parabéns você venceu na {num_rodada_atual}ª rodada!")
+
+        time.sleep(2)
         break
 
     if checar_empate(elemento_do_jogo):
