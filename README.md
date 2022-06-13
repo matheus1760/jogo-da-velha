@@ -10,6 +10,9 @@ Este projeto utiliza tudo que o grupo aprendeu sobre python na criação do famo
 - Sidnei Marcos
 - Matheus Bione
 
+<ins>repositório<ins>: https://github/matheus1760/jogo-da-velha
+
+
 ## Implementações:
 
 - métodos
